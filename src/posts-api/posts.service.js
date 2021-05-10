@@ -37,7 +37,12 @@ const updatePost = async (id, data) => {
     if (!snapshot.exists) {
         throw new PostNotFoundException(id);
     }
-    await postsCollection.doc(id).set(data);
+
+
+    Object.keys(data).forEach(key => data[key] === undefined && delete data[key])
+
+    await postsCollection.doc(id).set({ ...snapshot.data(), ...data });
+
 
     return {
         id,

@@ -1,6 +1,8 @@
 
 const { Router } = require('express');
 const postsController = require('./posts.controller')
+const postsValidation = require("./posts.validation")
+const validate = require('../middlewares/validation.middleware')
 
 const router = Router()
 
@@ -14,10 +16,13 @@ router.get(
 );
 router.post(
     '/',
+
+    validate(postsValidation.addPost),
     postsController.addPost
 );
 router.patch(
     '/:id',
+    validate(postsValidation.updatePost),
     postsController.updatePost
 );
 router.delete(
