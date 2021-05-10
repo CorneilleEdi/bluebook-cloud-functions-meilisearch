@@ -1,24 +1,62 @@
+const Firestore = require('@google-cloud/firestore');
+const PostNotFoundException = require('../exceptions/post-not-found.exception');
+
+const db = new Firestore()
+const postsCollection = db.collection('posts')
 
 const getPosts = async () => {
-    return [];
+    const snapshot = await postsCollection.get();
 
+    return snapshot.docs.map(doc => {
+        return { id: doc.id, ...doc.data() };
+    });
 };
 
 const getPost = async (id) => {
-    return { id };
+    const snapshot = await postsCollection.doc(id).get();
+
+    if (!snapshot.exists) {
+        throw new PostNotFoundException(id);
+    }
+    const result = { id: snapshot.id, ...snapshot.data() };
+    return result;
 
 };
 const addPost = async ({ title, description }) => {
-    return { title, description }
+    const res = await postsCollection.add({ title, description });
+
+    return {
+        id: res.id,
+        ...{ title, description },
+    };
 
 };
 const updatePost = async (id, data) => {
+    const snapshot = await postsCollection.doc(id).get();
 
-    return { id, data }
+    if (!snapshot.exists) {
+        throw new PostNotFoundException(id);
+    }
+    await postsCollection.doc(id).set(data);
+
+    return {
+        id,
+        ...snapshot.data(),
+        ...data,
+    };
 
 };
 const deletePost = async (id) => {
-    { id }
+    const snapshot = await postsCollection.doc(id).get();
+
+    if (!snapshot.exists) {
+        throw new PostNotFoundException(id);
+    }
+
+    await postsCollection.doc(id).delete();
+
+    return { message: `document ${id} is deleted` };
+
 };
 
 module.exports = {

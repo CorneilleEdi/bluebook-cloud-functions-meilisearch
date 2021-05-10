@@ -18,12 +18,13 @@ const addPost = catchAsync(async (req, res) => {
     return res.status(201).send(post);
 });
 
-const updatePost = async (id, data) => {
+const updatePost = catchAsync(async (req, res) => {
     const { title, description } = req.body;
     const post = await postsService.updatePost(req.params['id'], { title, description });
     return res.status(200).send(post);
 
-};
+});
+
 const deletePost = catchAsync(async (req, res) => {
     const post = await postsService.deletePost(req.params['id']);
     return res.status(200).send(post);
