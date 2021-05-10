@@ -1,3 +1,3 @@
-exports.helloWorld = (req, res) => {
-    res.send('Hello, World');
-};
+const postsApi = require('./posts-api')
+
+exports.postsApi = postsApi
