@@ -1,0 +1,26 @@
+{
+  "name": "bluebook-searchposts-api-event-handler",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "functions-framework --source=src/ --target=postsApiFirestoreEventHandler",
+    "start:dev": "nodemon --watch ./src/ --exec npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CorneilleEdi/bluebook-cloud-functions-meilisearch.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/CorneilleEdi/bluebook-cloud-functions-meilisearch/issues"
+  },
+  "homepage": "https://github.com/CorneilleEdi/bluebook-cloud-functions-meilisearch#readme",
+  "dependencies": {
+    "@google-cloud/firestore": "^4.11.0"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^1.7.1",
+    "nodemon": "^2.0.7"
+  }
+}
