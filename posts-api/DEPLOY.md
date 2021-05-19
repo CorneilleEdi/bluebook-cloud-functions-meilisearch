@@ -1,5 +1,5 @@
 
-## Added
+## Search
 
 ```bash
 gcloud functions deploy postsApi \
