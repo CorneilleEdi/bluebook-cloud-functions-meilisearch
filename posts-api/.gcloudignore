@@ -16,3 +16,4 @@
 node_modules
 #!include:.gitignore
 package-lock.json
+.env

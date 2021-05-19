@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const httpStatus = require('http-status');
 const postsRouter = require('./posts.router');
-const { errorHandler, errorConverter } = require('../middlewares/error.middleware');
-const HttpException = require('../exceptions/http.exception');
+const { errorHandler, errorConverter } = require('./middlewares/error.middleware');
+const HttpException = require('./exceptions/http.exception');
 
 
 const app = express();

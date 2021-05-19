@@ -1,8 +1,18 @@
 const Firestore = require('@google-cloud/firestore');
-const PostNotFoundException = require('../exceptions/post-not-found.exception');
-
+const PostNotFoundException = require('./exceptions/post-not-found.exception');
+const searchService = require('./shared/search.service')
+const config = require('./shared/config')
 const db = new Firestore()
 const postsCollection = db.collection('posts')
+
+
+const searchPosts = async (key) => {
+    const client = await searchService.getMeilisearchClient();
+    const index = config.meilisearchPostsIndex;
+
+    return client.index(index).search(key);
+};
+
 
 const getPosts = async () => {
     const snapshot = await postsCollection.get();
@@ -65,6 +75,7 @@ const deletePost = async (id) => {
 };
 
 module.exports = {
+    searchPosts,
     getPosts,
     getPost,
     addPost,

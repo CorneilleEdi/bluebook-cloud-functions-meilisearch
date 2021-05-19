@@ -2,7 +2,7 @@
 const { Router } = require('express');
 const postsController = require('./posts.controller')
 const postsValidation = require("./posts.validation")
-const validate = require('../middlewares/validation.middleware')
+const validate = require('./middlewares/validation.middleware')
 
 const router = Router()
 

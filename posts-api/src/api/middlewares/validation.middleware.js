@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const httpStatus = require('http-status');
 const HttpException = require('../exceptions/http.exception');
-const pick = require('../utils/pick');
+const pick = require('../shared/utils/pick');
 
 const validate = (schema) => (req, res, next) => {
     const validSchema = pick(schema, ['params', 'query', 'body']);

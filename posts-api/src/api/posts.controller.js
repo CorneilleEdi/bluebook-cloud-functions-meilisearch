@@ -1,9 +1,18 @@
-const catchAsync = require('../utils/catchAsync');
+const catchAsync = require('./shared/utils/catchAsync');
 const postsService = require('./posts.service');
 
-
 const getPosts = catchAsync(async (req, res) => {
-    const posts = await postsService.getPosts();
+    const key = req.query.q
+
+    let posts = [];
+
+    if (key) {
+        const result = await postsService.searchPosts(key);
+        posts = result.hits;
+    } else {
+        posts = await postsService.getPosts();
+    }
+
     return res.status(200).send(posts);
 });
 
