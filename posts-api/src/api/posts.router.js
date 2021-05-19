@@ -16,7 +16,6 @@ router.get(
 );
 router.post(
     '/',
-
     validate(postsValidation.addPost),
     postsController.addPost
 );

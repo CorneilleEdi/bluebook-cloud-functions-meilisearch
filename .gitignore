@@ -12,3 +12,4 @@ yarn-error.log
 *.log
 firebase-data/
 package-lock.json
+.env

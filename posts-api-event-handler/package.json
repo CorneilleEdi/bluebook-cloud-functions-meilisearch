@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/CorneilleEdi/bluebook-cloud-functions-meilisearch#readme",
   "dependencies": {
-    "@google-cloud/firestore": "^4.11.0"
+    "@google-cloud/firestore": "^4.11.0",
+    "@google-cloud/secret-manager": "^3.6.1",
+    "dotenv": "^9.0.2",
+    "meilisearch": "^0.18.2"
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "^1.7.1",
