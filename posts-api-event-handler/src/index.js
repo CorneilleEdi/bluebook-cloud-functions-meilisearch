@@ -1,7 +1,10 @@
 require('dotenv').config()
-const { onPostAdded, onPostDeleted, onPostUpdated } = require('./handlers')
+const { onPostWritten } = require('./handlers')
 
+exports.postWrittenHandler = onPostWritten
 
-exports.postAddedHandler = onPostAdded
-exports.postDeletedHandler = onPostDeleted
-exports.postUpdatedHandler = onPostUpdated
+//const { onPostAdded, onPostDeleted, onPostUpdated } = require('./handlers')
+
+// exports.postDeletedHandler = onPostAdded
+// exports.postDeletedHandler = onPostDeleted
+// exports.postUpdatedHandler = onPostUpdated

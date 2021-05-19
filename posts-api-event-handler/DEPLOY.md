@@ -37,3 +37,16 @@ gcloud functions deploy postDeletedHandler \
 --region=europe-west1 \
 --vpc-connector posts-handlers-connector
 ```
+
+## Written
+
+```bash
+gcloud functions deploy postWrittenHandler \
+--entry-point=postWrittenHandler \
+--runtime nodejs14 \
+--set-env-vars MEILISEARCH_ADDRESS=http://10.132.0.2 \
+--trigger-event "providers/cloud.firestore/eventTypes/document.write" \
+--trigger-resource "projects/bluebook-search/databases/(default)/documents/posts/{id}" \
+--region=europe-west1 \
+--vpc-connector posts-handlers-connector
+```
